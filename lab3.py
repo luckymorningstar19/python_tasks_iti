@@ -1,0 +1,94 @@
+class employee:
+    
+    def __init__(self,employee_id,name,age):
+        self.employee_id =employee_id
+        self.name =name
+        self.age= age
+
+    def display_info(self):
+        print(f"employee id:{self.employee_id}")
+        print(f"name:{self.name}")
+        print(f"age:{self.age}")
+
+    def calculate_salary(self):
+        return 0.0
+
+class fulltimeemployee(employee):
+
+    def __init__(self,employee_id,name,age,monthly_salary):
+        super().__init__(employee_id,name,age)
+        self.monthly_salary =monthly_salary
+
+    def calculate_salary(self):
+        return self.monthly_salary
+
+    def display_info(self):
+        super().display_info()
+        print("type:full-time employee")
+
+class parttimeemployee(employee):
+
+    def __init__(self,employee_id,name,age,hourly_rate,hours_worked):
+        super().__init__(employee_id,name,age)
+        self.hourly_rate=hourly_rate
+        self.hours_worked=hours_worked
+
+    def calculate_salary(self):
+        return self.hourly_rate *self.hours_worked
+
+    def display_info(self):
+        super().display_info()
+        print("type :part-time employee")
+
+class freelancer(employee):
+
+    def __init__(self,employee_id,name,age,project_rate,projects_completed):
+        super().__init__(employee_id,name,age)
+        self.project_rate=project_rate
+        self.projects_completed=projects_completed
+
+    def calculate_salary(self):
+        return self.project_rate * self.projects_completed
+
+    def display_info(self):
+        super().display_info()
+        print("freelancer type")
+
+def main():
+    employees = [
+        fulltimeemployee(101, "mohamed osama", 30, monthly_salary=5000),
+        parttimeemployee(102, "osama mohamed ", 24, hourly_rate=20, hours_worked=85),
+        freelancer(103, "mohaed ahmed", 28, project_rate=300, projects_completed=4),
+        fulltimeemployee(104, "ahmed soliman ", 35, monthly_salary=6200),
+        parttimeemployee(105, "abdelrahman ibrahim", 22, hourly_rate=18, hours_worked=60),
+    ]
+    print("=" * 55)
+    print("mangement system".center(55))
+    print("=" * 55)
+
+    total_payroll = 0.0
+    highest_salary = float("-inf")
+    highest_paid_employee = None
+
+    for emp in employees:
+        print("-" * 55)
+        emp.display_info()          
+        salary = emp.calculate_salary() 
+        print(f"Salary      : ${salary:,.2f}")
+
+        total_payroll += salary
+        if salary > highest_salary:
+            highest_salary = salary
+            highest_paid_employee = emp
+
+
+    print("=" * 55)
+    print("employee report".center(55))
+    print("=" * 55)
+    print(f"total number of employees:{len(employees)}")
+    print(f"total payroll : ${total_payroll:,.2f}")
+    print(f"highest paid employee: {highest_paid_employee.name} "
+        f"(id: {highest_paid_employee.employee_id}) - ${highest_salary:,.2f}")
+    print("=" * 55)
+
+main()
