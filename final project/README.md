@@ -62,11 +62,3 @@ The program will never crash on bad input. It gracefully handles:
 - **Encapsulation** — `Book` and `Library` keep their internal data
   (copy counts, catalog dictionary, borrow records) in private attributes,
   only accessible through methods/properties.
-
-## Screenshots
-
-*(Add screenshots of the program running here before submitting.)*
-
-## Repository Link
-
-*(Add your GitHub repository link here before submitting.)*
